@@ -36,4 +36,16 @@ router.patch("/:name", function(req, res) {
   throw new NotFoundError("Item does not exist.")
 });
 
+router.delete("/:name", function(req, res) {
+  console.log("in delete", items);
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].name === req.params.name) {
+      items.splice(i, 1);
+      return res.json({message: "Deleted"});
+    }
+  }
+  throw new NotFoundError("Item does not exist.")
+});
+
+
 module.exports = router;
